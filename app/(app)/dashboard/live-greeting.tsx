@@ -9,6 +9,16 @@ export function LiveGreeting() {
     const updateDateTime = () => {
       const now = new Date()
 
+      const hour = now.getHours()
+
+      let greeting = 'Good evening'
+
+      if (hour < 12) {
+        greeting = 'Good morning'
+      } else if (hour < 17) {
+        greeting = 'Good afternoon'
+      }
+
       const formatted = now.toLocaleString('en-IN', {
         weekday: 'long',
         day: 'numeric',
@@ -19,7 +29,7 @@ export function LiveGreeting() {
         second: '2-digit',
       })
 
-      setDateTime(formatted)
+      setDateTime(`${greeting}|${formatted}`)
     }
 
     updateDateTime()
@@ -29,14 +39,16 @@ export function LiveGreeting() {
     return () => clearInterval(interval)
   }, [])
 
+  const [greeting, currentDateTime] = dateTime.split('|')
+
   return (
     <>
       <h2 className="font-display text-2xl font-bold tracking-tight">
-        Good morning, Ravi
+        {greeting || 'Good morning'}, Ravi
       </h2>
 
       <p className="mt-1 text-sm text-muted-foreground">
-        {dateTime}
+        {currentDateTime}
       </p>
 
       <p className="mt-1 text-muted-foreground">
