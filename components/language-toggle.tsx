@@ -1,30 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useLanguage } from './language-provider'
 
 export function LanguageToggle() {
-  const [language, setLanguage] = useState<'en' | 'ta'>('en')
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('localbiz-language')
-
-    if (savedLanguage === 'ta' || savedLanguage === 'en') {
-      setLanguage(savedLanguage)
-    }
-  }, [])
-
-  const toggleLanguage = () => {
-    const nextLanguage = language === 'en' ? 'ta' : 'en'
-
-    setLanguage(nextLanguage)
-    localStorage.setItem('localbiz-language', nextLanguage)
-
-    window.dispatchEvent(
-      new CustomEvent('language-change', {
-        detail: nextLanguage,
-      }),
-    )
-  }
+  const { language, toggleLanguage } = useLanguage()
 
   return (
     <button
