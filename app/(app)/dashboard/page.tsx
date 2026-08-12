@@ -1,10 +1,8 @@
+```tsx
 import Link from 'next/link'
 import Image from 'next/image'
 import {
   ScanSearch,
-  Flame,
-  ListChecks,
-  Megaphone,
   CloudRain,
   ArrowRight,
   ArrowUpRight,
@@ -18,13 +16,6 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { LiveGreeting } from './live-greeting'
 import { DashboardText } from './dashboard-content'
-
-const statIcons = {
-  analyzed: ScanSearch,
-  'high-demand': Flame,
-  actions: ListChecks,
-  campaigns: Megaphone,
-} as const
 
 export default async function DashboardPage() {
   const [stats, products, featured, recommendations] = await Promise.all([
@@ -89,7 +80,6 @@ export default async function DashboardPage() {
               <StatCard
                 key={stat.id}
                 stat={stat}
-                icon={statIcons[stat.id as keyof typeof statIcons]}
                 accent={stat.id === 'campaigns'}
               />
             ))}
@@ -344,3 +334,4 @@ function Metric({
     </div>
   )
 }
+```
