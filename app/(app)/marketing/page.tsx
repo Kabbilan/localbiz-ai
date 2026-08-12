@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { CopyCard } from "@/components/copy-card"
 import { api } from "@/services/api"
-import { MessageCircle, FileText, Tag, Megaphone } from "lucide-react"
+import { Camera, MessageCircle, FileText, Tag, Megaphone } from "lucide-react"
 
 export const metadata = { title: "Marketing Studio — LocalBiz AI" }
 
@@ -53,7 +53,7 @@ export default async function MarketingPage() {
             title="Instagram Caption"
             description="Ready to post with hashtags"
             content={m.instagramCaption}
-            icon={Instagram}
+            icon={Camera}
           />
           <CopyCard
             title="WhatsApp Message"
