@@ -3,21 +3,37 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, Copy } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import {
+  Check,
+  Copy,
+  Camera,
+  MessageCircle,
+  FileText,
+  Tag,
+  type LucideIcon,
+} from "lucide-react"
+
+const icons: Record<string, LucideIcon> = {
+  Camera,
+  MessageCircle,
+  FileText,
+  Tag,
+}
 
 export function CopyCard({
   title,
   description,
   content,
-  icon: Icon,
+  icon,
 }: {
   title: string
   description: string
   content: string
-  icon: LucideIcon
+  icon: string
 }) {
   const [copied, setCopied] = useState(false)
+
+  const Icon = icons[icon] ?? FileText
 
   function handleCopy() {
     navigator.clipboard.writeText(content).then(() => {
@@ -36,6 +52,7 @@ export function CopyCard({
             </div>
             <CardTitle className="text-base">{title}</CardTitle>
           </div>
+
           <Button
             variant="ghost"
             size="sm"
@@ -56,8 +73,10 @@ export function CopyCard({
             )}
           </Button>
         </div>
+
         <CardDescription>{description}</CardDescription>
       </CardHeader>
+
       <CardContent className="flex-1">
         <p className="whitespace-pre-wrap rounded-lg border border-border bg-muted/40 p-4 text-sm leading-relaxed text-foreground">
           {content}
