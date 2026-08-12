@@ -60,14 +60,10 @@ const translations = {
     demand: 'தேவை',
     analyzed: 'ஆய்வு செய்யப்பட்ட நேரம்',
   },
-}
+} as const
 
-export function DashboardText({
-  children,
-}: {
-  children: (t: (typeof translations)['en']) => React.ReactNode
-}) {
+export function useDashboardText() {
   const { language } = useLanguage()
 
-  return <>{children(translations[language])}</>
+  return translations[language]
 }
