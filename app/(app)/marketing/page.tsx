@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { CopyCard } from "@/components/copy-card"
 import { api } from "@/services/api"
-import { Instagram, MessageCircle, FileText, Tag, Megaphone } from "lucide-react"
+import { MessageCircle, FileText, Tag, Megaphone } from "lucide-react"
 
 export const metadata = { title: "Marketing Studio — LocalBiz AI" }
 
