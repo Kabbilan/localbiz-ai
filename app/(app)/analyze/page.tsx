@@ -406,23 +406,24 @@ export default function AnalyzePage() {
                       key={step}
                       className="flex items-center gap-3 text-sm"
                     >
-                      <span
-                        className={`flex size-6 shrink-0 items-center justify-center rounded-full border ${
-                          done
-                            ? 'border-success bg-success/15 text-success'
-                            : active
-                              ? 'border-primary bg-primary/10 text-primary'
-                              : 'border-border text-muted-foreground'
-                        }`}
-                      >
-                        {done ? (
-                          '✓'
-                        ) : active ? (
-                          <Loader2 className="size-3.5 animate-spin" />
-                        ) : (
-                          i + 1
-                        )}
-                      </span>
+<span
+  className={
+    'flex size-6 shrink-0 items-center justify-center rounded-full border ' +
+    (done
+      ? 'border-success bg-success/15 text-success'
+      : active
+        ? 'border-primary bg-primary/10 text-primary'
+        : 'border-border text-muted-foreground')
+  }
+>
+  {done ? (
+    '✓'
+  ) : active ? (
+    <Loader2 className="size-3.5 animate-spin" />
+  ) : (
+    i + 1
+  )}
+</span>
 
                       <span
                         className={
