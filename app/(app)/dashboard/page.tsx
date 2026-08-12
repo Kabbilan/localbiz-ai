@@ -1,8 +1,10 @@
-```tsx
 import Link from 'next/link'
 import Image from 'next/image'
 import {
   ScanSearch,
+  Flame,
+  ListChecks,
+  Megaphone,
   CloudRain,
   ArrowRight,
   ArrowUpRight,
@@ -16,6 +18,13 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { LiveGreeting } from './live-greeting'
 import { DashboardText } from './dashboard-content'
+
+const statIcons = {
+  analyzed: ScanSearch,
+  'high-demand': Flame,
+  actions: ListChecks,
+  campaigns: Megaphone,
+} as const
 
 export default async function DashboardPage() {
   const [stats, products, featured, recommendations] = await Promise.all([
@@ -80,6 +89,7 @@ export default async function DashboardPage() {
               <StatCard
                 key={stat.id}
                 stat={stat}
+                icon={statIcons[stat.id as keyof typeof statIcons]}
                 accent={stat.id === 'campaigns'}
               />
             ))}
@@ -240,12 +250,24 @@ export default async function DashboardPage() {
                 <table className="w-full min-w-[640px] text-sm">
                   <thead>
                     <tr className="border-y border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
-                      <th className="px-6 py-3 font-medium">{t.product}</th>
-                      <th className="px-6 py-3 font-medium">{t.price}</th>
-                      <th className="px-6 py-3 font-medium">{t.recommended}</th>
-                      <th className="px-6 py-3 font-medium">{t.stock}</th>
-                      <th className="px-6 py-3 font-medium">{t.demand}</th>
-                      <th className="px-6 py-3 font-medium">{t.analyzed}</th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.product}
+                      </th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.price}
+                      </th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.recommended}
+                      </th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.stock}
+                      </th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.demand}
+                      </th>
+                      <th className="px-6 py-3 font-medium">
+                        {t.analyzed}
+                      </th>
                     </tr>
                   </thead>
 
@@ -334,4 +356,3 @@ function Metric({
     </div>
   )
 }
-```
