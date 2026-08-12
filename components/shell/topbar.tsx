@@ -3,11 +3,14 @@
 import { usePathname } from 'next/navigation'
 import { Menu, Search, Bell } from 'lucide-react'
 import { navItems } from '@/lib/nav'
+import { LanguageToggle } from '@/components/language-toggle'
 
 export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = usePathname()
+
   const current = navItems.find(
-    (item) => pathname === item.href || pathname.startsWith(item.href + '/'),
+    (item) =>
+      pathname === item.href || pathname.startsWith(item.href + '/'),
   )
 
   return (
@@ -24,34 +27,51 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
         <h1 className="truncate font-display text-lg font-bold tracking-tight">
           {current?.label ?? 'Dashboard'}
         </h1>
+
         <p className="hidden truncate text-xs text-muted-foreground sm:block">
           {current?.description ?? 'Your shop at a glance'}
         </p>
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        {/* Search */}
         <div className="hidden items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground md:flex">
           <Search className="size-4" />
+
           <input
             className="w-32 bg-transparent outline-none placeholder:text-muted-foreground xl:w-48"
             placeholder="Search products..."
             aria-label="Search products"
           />
         </div>
+
+        {/* Language Toggle */}
+        <LanguageToggle />
+
+        {/* Notifications */}
         <button
           aria-label="Notifications"
           className="relative flex size-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground"
         >
           <Bell className="size-[1.1rem]" />
+
           <span className="absolute right-2 top-2 size-2 rounded-full bg-primary ring-2 ring-card" />
         </button>
+
+        {/* Store Profile */}
         <div className="flex items-center gap-2.5 rounded-lg border border-border bg-card py-1 pl-1 pr-3">
           <span className="flex size-8 items-center justify-center rounded-md bg-secondary font-display text-sm font-bold text-secondary-foreground">
             RS
           </span>
+
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-sm font-medium">Ravi&apos;s Store</span>
-            <span className="text-[0.7rem] text-muted-foreground">Owner</span>
+            <span className="text-sm font-medium">
+              Ravi&apos;s Store
+            </span>
+
+            <span className="text-[0.7rem] text-muted-foreground">
+              Owner
+            </span>
           </span>
         </div>
       </div>
